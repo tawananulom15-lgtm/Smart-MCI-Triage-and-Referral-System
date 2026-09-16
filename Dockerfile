@@ -2,14 +2,13 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-# Copy package files
+# Copy all files
 COPY package.json package-lock.json ./
+COPY . .
 
-# Install only production dependencies
-RUN npm install --production
-
-# Copy built artifacts from the host environment
-COPY dist ./dist
+# Install dependencies and build the app inside Docker
+RUN npm install
+RUN npm run build
 
 # Create a data directory for the local database
 RUN mkdir -p data
