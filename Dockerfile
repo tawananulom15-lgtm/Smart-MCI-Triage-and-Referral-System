@@ -6,8 +6,8 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 COPY . .
 
-# Install dependencies and build the app inside Docker
-RUN npm install
+# บังคับให้ติดตั้งเครื่องมือสำหรับ Build ด้วย
+RUN npm install --include=dev
 RUN npm run build
 
 # Create a data directory for the local database
